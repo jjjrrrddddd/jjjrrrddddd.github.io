@@ -188,7 +188,7 @@ document.querySelectorAll(".vote-button").forEach(button => {
     const buttonRect = button.getBoundingClientRect();
     const posterRect = poster.getBoundingClientRect();
     const thanksWidth = thanks.getBoundingClientRect().width;
-    const gap = 4;
+    const gap = -15;
 
     let x = buttonRect.right - posterRect.left + gap;
     const maxX = posterRect.width - thanksWidth - gap;
