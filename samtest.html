@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Choose Your Opener</title>
+<style>
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    background: #000;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Whole phone-width page */
+  .site {
+    position: relative;
+    width: 100vw;
+    max-width: 311px;
+    overflow: hidden;
+    background: #9e9c9c;
+  }
+
+  /* Casino strip sits immediately before the main artwork */
+  .casino-heading {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .poster {
+    position: relative;
+    width: 100%;
+    margin-top: 35px;
+    aspect-ratio: 311 / 2048;
+    background: url("background.gif") top center / 100% 100% no-repeat;
+  }
+
+  /* Two small UK flags either side of the word OPENER */
+  .flag {
+    position: absolute;
+    z-index: 8;
+    top: 3.15%;
+    width: 12%;
+    height: auto;
+    pointer-events: none;
+  }
+
+  .flag-left {
+    left: 4%;
+  }
+
+  .flag-right {
+    right: 4%;
+  }
+
+  .vote-button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 39.87%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    z-index: 10;
+  }
+
+  .vote-button img {
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+  }
+
+  .vote-button:active {
+    transform: translateX(-50%) translateY(2px);
+  }
+
+  .thank-you {
+    position: absolute;
+    z-index: 20;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: "Marker Felt", "Comic Sans MS", cursive;
+    font-size: clamp(20px, 7vw, 28px);
+    color: white;
+    text-shadow:
+      1px 1px 0 #000,
+      -1px 1px 0 #000,
+      1px -1px 0 #000,
+      -1px -1px 0 #000;
+    animation: thankYouPop 1s ease-out forwards;
+  }
+
+  @keyframes thankYouPop {
+    0%   { opacity: 0; transform: translateY(8px) scale(.85) rotate(-4deg); }
+    18%  { opacity: 1; transform: translateY(0) scale(1.08) rotate(2deg); }
+    55%  { opacity: 1; transform: translateY(-10px) scale(1) rotate(-1deg); }
+    100% { opacity: 0; transform: translateY(-26px) scale(.96) rotate(1deg); }
+  }
+
+  /* Positions retained relative to the 311×2048 artwork */
+  .james  { top: 17.87%; }
+  .slash  { top: 33.74%; }
+  .chris  { top: 47.41%; }
+  .roy    { top: 64.55%; }
+  .jackie { top: 80.66%; }
+  .lady   { top: 95.46%; }
+</style>
+</head>
+<body>
+
+<div class="site">
+  <img class="casino-heading" src="casino-heading.gif" alt="">
+
+  <main class="poster" aria-label="Choose Your Opener">
+    <img class="flag flag-left" src="flag.gif" alt="">
+    <img class="flag flag-right" src="flag.gif" alt="">
+
+    <button class="vote-button james" type="button" data-person="James Acaster" aria-label="Vote for James Acaster"><img src="vote.png" alt=""></button>
+    <button class="vote-button slash" type="button" data-person="Slash" aria-label="Vote for Slash"><img src="vote.png" alt=""></button>
+    <button class="vote-button chris" type="button" data-person="Chris" aria-label="Vote for Chris"><img src="vote.png" alt=""></button>
+    <button class="vote-button roy" type="button" data-person="Roy Chubby Brown" aria-label="Vote for Roy Chubby Brown"><img src="vote.png" alt=""></button>
+    <button class="vote-button jackie" type="button" data-person="Jackie Chan" aria-label="Vote for Jackie Chan"><img src="vote.png" alt=""></button>
+    <button class="vote-button lady" type="button" data-person="The Lady" aria-label="Vote for The Lady"><img src="vote.png" alt=""></button>
+  </main>
+</div>
+
+<script>
+document.querySelectorAll(".vote-button").forEach(button => {
+  button.addEventListener("click", () => {
+    const poster = document.querySelector(".poster");
+    const thanks = document.createElement("div");
+    thanks.className = "thank-you";
+    thanks.textContent = "thank you";
+
+    poster.appendChild(thanks);
+
+    const buttonRect = button.getBoundingClientRect();
+    const posterRect = poster.getBoundingClientRect();
+    const thanksWidth = thanks.getBoundingClientRect().width;
+    const gap = 4;
+
+    let x = buttonRect.right - posterRect.left + gap;
+    const maxX = posterRect.width - thanksWidth - gap;
+
+    if (x > maxX) {
+      x = buttonRect.left - posterRect.left - thanksWidth - gap;
+    }
+
+    x = Math.max(gap, Math.min(x, maxX));
+
+    thanks.style.left = x + "px";
+    thanks.style.top =
+      (buttonRect.top - posterRect.top + buttonRect.height * 0.15) + "px";
+
+    setTimeout(() => thanks.remove(), 1000);
+  });
+});
+</script>
+
+</body>
+</html>
