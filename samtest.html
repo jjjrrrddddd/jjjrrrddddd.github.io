@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Choose Your Opener</title>
 <style>
   * { box-sizing: border-box; }
@@ -11,12 +11,16 @@
     margin: 0;
     width: 100%;
     min-height: 100%;
-    background: #000;
+    background: #9e9c9c;
   }
 
   body {
     display: flex;
     justify-content: center;
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
   }
 
   /* Whole phone-width page */
@@ -29,16 +33,29 @@
   }
 
   /* Casino strip sits immediately before the main artwork */
-  .casino-heading {
+  .casino-heading,
+  .scam-banner {
     display: block;
     width: 100%;
     height: auto;
   }
 
+  .nation-gap {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Times New Roman", Times, serif;
+    font-stretch: condensed;
+    font-size: 15px;
+    font-weight: normal;
+    color: #fff;
+    letter-spacing: 0;
+  }
+
   .poster {
     position: relative;
     width: 100%;
-    margin-top: 35px;
     aspect-ratio: 311 / 2048;
     background: url("background.gif") top center / 100% 100% no-repeat;
   }
@@ -60,6 +77,21 @@
   .flag-right {
     right: 4%;
   }
+
+  .decor-star {
+    position: absolute;
+    z-index: 7;
+    width: 11%;
+    height: auto;
+    pointer-events: none;
+  }
+
+  /* Five little stars tucked into quieter bits of the artwork */
+  .star-1 { top: 20.7%; right: 4%; }
+  .star-2 { top: 38.8%; right: 5%; }
+  .star-3 { top: 49.8%; left: 7%; }
+  .star-4 { top: 72.0%; right: 4%; }
+  .star-5 { top: 88.8%; left: 5%; }
 
   .vote-button {
     position: absolute;
@@ -122,10 +154,17 @@
 
 <div class="site">
   <img class="casino-heading" src="casino-heading.gif" alt="">
+  <div class="nation-gap">the nation decides...</div>
 
   <main class="poster" aria-label="Choose Your Opener">
     <img class="flag flag-left" src="flag.gif" alt="">
     <img class="flag flag-right" src="flag.gif" alt="">
+
+    <img class="decor-star star-1" src="star.gif" alt="">
+    <img class="decor-star star-2" src="star.gif" alt="">
+    <img class="decor-star star-3" src="star.gif" alt="">
+    <img class="decor-star star-4" src="star.gif" alt="">
+    <img class="decor-star star-5" src="star.gif" alt="">
 
     <button class="vote-button james" type="button" data-person="James Acaster" aria-label="Vote for James Acaster"><img src="vote.png" alt=""></button>
     <button class="vote-button slash" type="button" data-person="Slash" aria-label="Vote for Slash"><img src="vote.png" alt=""></button>
@@ -134,6 +173,7 @@
     <button class="vote-button jackie" type="button" data-person="Jackie Chan" aria-label="Vote for Jackie Chan"><img src="vote.png" alt=""></button>
     <button class="vote-button lady" type="button" data-person="The Lady" aria-label="Vote for The Lady"><img src="vote.png" alt=""></button>
   </main>
+  <img class="scam-banner" src="scam.gif" alt="">
 </div>
 
 <script>
