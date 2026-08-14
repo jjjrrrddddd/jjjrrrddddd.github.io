@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Choose Your Opener</title>
+
 <style>
   * { box-sizing: border-box; }
 
@@ -134,10 +135,25 @@
   }
 
   @keyframes thankYouPop {
-    0%   { opacity: 0; transform: translateY(8px) scale(.85) rotate(-4deg); }
-    18%  { opacity: 1; transform: translateY(0) scale(1.08) rotate(2deg); }
-    55%  { opacity: 1; transform: translateY(-10px) scale(1) rotate(-1deg); }
-    100% { opacity: 0; transform: translateY(-26px) scale(.96) rotate(1deg); }
+    0% {
+      opacity: 0;
+      transform: translateY(8px) scale(.85) rotate(-4deg);
+    }
+
+    18% {
+      opacity: 1;
+      transform: translateY(0) scale(1.08) rotate(2deg);
+    }
+
+    55% {
+      opacity: 1;
+      transform: translateY(-10px) scale(1) rotate(-1deg);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(-26px) scale(.96) rotate(1deg);
+    }
   }
 
   /* Positions retained relative to the 311×2048 artwork */
@@ -147,65 +163,270 @@
   .roy    { top: 64.55%; }
   .jackie { top: 80.66%; }
   .lady   { top: 95.46%; }
+
 </style>
 </head>
+
 <body>
 
 <div class="site">
-  <img class="casino-heading" src="casino-heading.gif" alt="">
-  <div class="nation-gap">the nation decides...</div>
 
-  <main class="poster" aria-label="Choose Your Opener">
-    <img class="flag flag-left" src="flag.gif" alt="">
-    <img class="flag flag-right" src="flag.gif" alt="">
+  <img
+    class="casino-heading"
+    src="casino-heading.gif"
+    alt=""
+  >
 
-    <img class="decor-star star-1" src="star.gif" alt="">
-    <img class="decor-star star-2" src="star.gif" alt="">
-    <img class="decor-star star-3" src="star.gif" alt="">
-    <img class="decor-star star-4" src="star.gif" alt="">
-    <img class="decor-star star-5" src="star.gif" alt="">
+  <div class="nation-gap">
+    the nation decides...
+  </div>
 
-    <button class="vote-button james" type="button" data-person="James Acaster" aria-label="Vote for James Acaster"><img src="vote.png" alt=""></button>
-    <button class="vote-button slash" type="button" data-person="Slash" aria-label="Vote for Slash"><img src="vote.png" alt=""></button>
-    <button class="vote-button chris" type="button" data-person="Chris" aria-label="Vote for Chris"><img src="vote.png" alt=""></button>
-    <button class="vote-button roy" type="button" data-person="Roy Chubby Brown" aria-label="Vote for Roy Chubby Brown"><img src="vote.png" alt=""></button>
-    <button class="vote-button jackie" type="button" data-person="Jackie Chan" aria-label="Vote for Jackie Chan"><img src="vote.png" alt=""></button>
-    <button class="vote-button lady" type="button" data-person="The Lady" aria-label="Vote for The Lady"><img src="vote.png" alt=""></button>
+  <main
+    class="poster"
+    aria-label="Choose Your Opener"
+  >
+
+    <img
+      class="flag flag-left"
+      src="flag.gif"
+      alt=""
+    >
+
+    <img
+      class="flag flag-right"
+      src="flag.gif"
+      alt=""
+    >
+
+    <img
+      class="decor-star star-1"
+      src="star.gif"
+      alt=""
+    >
+
+    <img
+      class="decor-star star-2"
+      src="star.gif"
+      alt=""
+    >
+
+    <img
+      class="decor-star star-3"
+      src="star.gif"
+      alt=""
+    >
+
+    <img
+      class="decor-star star-4"
+      src="star.gif"
+      alt=""
+    >
+
+    <img
+      class="decor-star star-5"
+      src="star.gif"
+      alt=""
+    >
+
+
+    <!-- JAMES -->
+    <button
+      class="vote-button james"
+      type="button"
+      data-person="James Acaster"
+      aria-label="Vote for James Acaster"
+    >
+      <img src="vote.png" alt="">
+    </button>
+
+
+    <!-- SLASH -->
+    <button
+      class="vote-button slash"
+      type="button"
+      data-person="Slash"
+      aria-label="Vote for Slash"
+    >
+      <img src="vote.png" alt="">
+    </button>
+
+
+    <!-- CHRIS -->
+    <button
+      class="vote-button chris"
+      type="button"
+      data-person="Chris"
+      aria-label="Vote for Chris"
+    >
+      <img src="vote.png" alt="">
+    </button>
+
+
+    <!-- ROY CHUBBY BROWN -->
+    <button
+      class="vote-button roy"
+      type="button"
+      data-person="Roy Chubby Brown"
+      aria-label="Vote for Roy Chubby Brown"
+    >
+      <img src="vote.png" alt="">
+    </button>
+
+
+    <!-- JACKIE CHAN -->
+    <button
+      class="vote-button jackie"
+      type="button"
+      data-person="Jackie Chan"
+      aria-label="Vote for Jackie Chan"
+    >
+      <img src="vote.png" alt="">
+    </button>
+
+
+    <!-- THE LADY -->
+    <button
+      class="vote-button lady"
+      type="button"
+      data-person="The Lady"
+      aria-label="Vote for The Lady"
+    >
+      <img src="vote.png" alt="">
+    </button>
+
   </main>
-  <img class="scam-banner" src="tinybikes.gif" alt="">
+
+
+  <img
+    class="scam-banner"
+    src="tinybikes.gif"
+    alt=""
+  >
+
 </div>
 
+
 <script>
+
 document.querySelectorAll(".vote-button").forEach(button => {
+
   button.addEventListener("click", () => {
+
     const poster = document.querySelector(".poster");
+
     const thanks = document.createElement("div");
+
     thanks.className = "thank-you";
     thanks.textContent = "thank you";
 
     poster.appendChild(thanks);
 
-    const buttonRect = button.getBoundingClientRect();
-    const posterRect = poster.getBoundingClientRect();
-    const thanksWidth = thanks.getBoundingClientRect().width;
+
+    /*
+      GET POSITION OF CLICKED BUTTON
+    */
+
+    const buttonRect =
+      button.getBoundingClientRect();
+
+    const posterRect =
+      poster.getBoundingClientRect();
+
+    const thanksWidth =
+      thanks.getBoundingClientRect().width;
+
     const gap = -15;
 
-    let x = buttonRect.right - posterRect.left + gap;
-    const maxX = posterRect.width - thanksWidth - gap;
+
+    /*
+      TRY TO PUT THANK YOU
+      ON THE RIGHT SIDE
+    */
+
+    let x =
+      buttonRect.right -
+      posterRect.left +
+      gap;
+
+
+    const maxX =
+      posterRect.width -
+      thanksWidth -
+      gap;
+
+
+    /*
+      IF THERE ISN'T ROOM,
+      PUT IT ON THE LEFT
+    */
 
     if (x > maxX) {
-      x = buttonRect.left - posterRect.left - thanksWidth - gap;
+
+      x =
+        buttonRect.left -
+        posterRect.left -
+        thanksWidth -
+        gap;
+
     }
 
-    x = Math.max(gap, Math.min(x, maxX));
 
-    thanks.style.left = x + "px";
+    /*
+      KEEP IT INSIDE PAGE
+    */
+
+    x =
+      Math.max(
+        gap,
+        Math.min(x, maxX)
+      );
+
+
+    thanks.style.left =
+      x + "px";
+
+
     thanks.style.top =
-      (buttonRect.top - posterRect.top + buttonRect.height * 0.15) + "px";
+      (
+        buttonRect.top -
+        posterRect.top +
+        buttonRect.height * 0.15
+      )
+      + "px";
 
-    setTimeout(() => thanks.remove(), 1000);
+
+    /*
+      WAIT FOR THE
+      THANK YOU ANIMATION
+    */
+
+    setTimeout(() => {
+
+      thanks.remove();
+
+
+      /*
+        IF THEY VOTED SLASH,
+        SEND THEM TO THE
+        SLASH RESULTS PAGE
+      */
+
+      if (
+        button.dataset.person === "Slash"
+      ) {
+
+        window.location.href =
+          "slash-results.html";
+
+      }
+
+
+    }, 1000);
+
   });
+
 });
+
 </script>
 
 </body>
