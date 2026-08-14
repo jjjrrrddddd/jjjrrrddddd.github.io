@@ -24,7 +24,6 @@
     -webkit-touch-callout: none;
   }
 
-  /* Whole phone-width page */
   .site {
     position: relative;
     width: 100vw;
@@ -32,7 +31,6 @@
     background: #9e9c9c;
   }
 
-  /* Casino strip sits immediately before the main artwork */
   .casino-heading,
   .scam-banner {
     display: block;
@@ -46,11 +44,9 @@
     align-items: center;
     justify-content: center;
     font-family: "Times New Roman", Times, serif;
-    font-stretch: condensed;
     font-size: 15px;
     font-weight: normal;
     color: #fff;
-    letter-spacing: 0;
   }
 
   .poster {
@@ -60,7 +56,6 @@
     background: url("background_v3.gif") top center / 100% 100% no-repeat;
   }
 
-  /* Two small UK flags either side of the word OPENER */
   .flag {
     position: absolute;
     z-index: 8;
@@ -86,7 +81,6 @@
     pointer-events: none;
   }
 
-  /* Five little stars tucked into quieter bits of the artwork */
   .star-1 { top: 20.7%; right: 4%; }
   .star-2 { top: 38.8%; right: 5%; }
   .star-3 { top: 49.8%; left: 7%; }
@@ -126,37 +120,51 @@
     font-family: "Marker Felt", "Comic Sans MS", cursive;
     font-size: clamp(20px, 7vw, 28px);
     color: white;
+
     text-shadow:
       1px 1px 0 #000,
       -1px 1px 0 #000,
       1px -1px 0 #000,
       -1px -1px 0 #000;
+
     animation: thankYouPop 1s ease-out forwards;
   }
 
   @keyframes thankYouPop {
+
     0% {
       opacity: 0;
-      transform: translateY(8px) scale(.85) rotate(-4deg);
+      transform:
+        translateY(8px)
+        scale(.85)
+        rotate(-4deg);
     }
 
     18% {
       opacity: 1;
-      transform: translateY(0) scale(1.08) rotate(2deg);
+      transform:
+        translateY(0)
+        scale(1.08)
+        rotate(2deg);
     }
 
     55% {
       opacity: 1;
-      transform: translateY(-10px) scale(1) rotate(-1deg);
+      transform:
+        translateY(-10px)
+        scale(1)
+        rotate(-1deg);
     }
 
     100% {
       opacity: 0;
-      transform: translateY(-26px) scale(.96) rotate(1deg);
+      transform:
+        translateY(-26px)
+        scale(.96)
+        rotate(1deg);
     }
   }
 
-  /* Positions retained relative to the 311×2048 artwork */
   .james  { top: 17.87%; }
   .slash  { top: 33.74%; }
   .chris  { top: 47.41%; }
@@ -181,6 +189,7 @@
     the nation decides...
   </div>
 
+
   <main
     class="poster"
     aria-label="Choose Your Opener"
@@ -197,6 +206,7 @@
       src="flag.gif"
       alt=""
     >
+
 
     <img
       class="decor-star star-1"
@@ -230,10 +240,12 @@
 
 
     <!-- JAMES -->
+
     <button
       class="vote-button james"
       type="button"
       data-person="James Acaster"
+      data-page="james-results.html"
       aria-label="Vote for James Acaster"
     >
       <img src="vote.png" alt="">
@@ -241,10 +253,12 @@
 
 
     <!-- SLASH -->
+
     <button
       class="vote-button slash"
       type="button"
       data-person="Slash"
+      data-page="slash-results.html"
       aria-label="Vote for Slash"
     >
       <img src="vote.png" alt="">
@@ -252,10 +266,12 @@
 
 
     <!-- CHRIS -->
+
     <button
       class="vote-button chris"
       type="button"
       data-person="Chris"
+      data-page="chris-results.html"
       aria-label="Vote for Chris"
     >
       <img src="vote.png" alt="">
@@ -263,10 +279,12 @@
 
 
     <!-- ROY CHUBBY BROWN -->
+
     <button
       class="vote-button roy"
       type="button"
       data-person="Roy Chubby Brown"
+      data-page="roy-results.html"
       aria-label="Vote for Roy Chubby Brown"
     >
       <img src="vote.png" alt="">
@@ -274,10 +292,12 @@
 
 
     <!-- JACKIE CHAN -->
+
     <button
       class="vote-button jackie"
       type="button"
       data-person="Jackie Chan"
+      data-page="jackie-results.html"
       aria-label="Vote for Jackie Chan"
     >
       <img src="vote.png" alt="">
@@ -285,14 +305,17 @@
 
 
     <!-- THE LADY -->
+
     <button
       class="vote-button lady"
       type="button"
       data-person="The Lady"
+      data-page="lady-results.html"
       aria-label="Vote for The Lady"
     >
       <img src="vote.png" alt="">
     </button>
+
 
   </main>
 
@@ -312,18 +335,23 @@ document.querySelectorAll(".vote-button").forEach(button => {
 
   button.addEventListener("click", () => {
 
-    const poster = document.querySelector(".poster");
+    const poster =
+      document.querySelector(".poster");
 
-    const thanks = document.createElement("div");
+    const thanks =
+      document.createElement("div");
+
 
     thanks.className = "thank-you";
     thanks.textContent = "thank you";
+
 
     poster.appendChild(thanks);
 
 
     /*
-      GET POSITION OF CLICKED BUTTON
+      POSITION THANK YOU
+      NEXT TO CLICKED BUTTON
     */
 
     const buttonRect =
@@ -335,13 +363,9 @@ document.querySelectorAll(".vote-button").forEach(button => {
     const thanksWidth =
       thanks.getBoundingClientRect().width;
 
+
     const gap = -15;
 
-
-    /*
-      TRY TO PUT THANK YOU
-      ON THE RIGHT SIDE
-    */
 
     let x =
       buttonRect.right -
@@ -356,8 +380,8 @@ document.querySelectorAll(".vote-button").forEach(button => {
 
 
     /*
-      IF THERE ISN'T ROOM,
-      PUT IT ON THE LEFT
+      IF TOO CLOSE TO RIGHT EDGE,
+      MOVE TO LEFT SIDE
     */
 
     if (x > maxX) {
@@ -372,7 +396,8 @@ document.querySelectorAll(".vote-button").forEach(button => {
 
 
     /*
-      KEEP IT INSIDE PAGE
+      KEEP THANK YOU
+      INSIDE THE PAGE
     */
 
     x =
@@ -396,8 +421,8 @@ document.querySelectorAll(".vote-button").forEach(button => {
 
 
     /*
-      WAIT FOR THE
-      THANK YOU ANIMATION
+      WAIT ONE SECOND
+      FOR THANK YOU ANIMATION
     */
 
     setTimeout(() => {
@@ -406,19 +431,12 @@ document.querySelectorAll(".vote-button").forEach(button => {
 
 
       /*
-        IF THEY VOTED SLASH,
-        SEND THEM TO THE
-        SLASH RESULTS PAGE
+        GO TO THE RESULT PAGE
+        STORED ON THAT BUTTON
       */
 
-      if (
-        button.dataset.person === "Slash"
-      ) {
-
-        window.location.href =
-          "slash-results.html";
-
-      }
+      window.location.href =
+        button.dataset.page;
 
 
     }, 1000);
