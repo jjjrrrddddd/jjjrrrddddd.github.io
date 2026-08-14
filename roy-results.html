@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Your Vote Matters</title>
+<style>
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    background: #9e9c9c;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    touch-action: pan-y;
+    overflow-x: hidden;
+  }
+
+  .page {
+    position: relative;
+    width: 100vw;
+    aspect-ratio: 540 / 1380;
+    background: url("ROY_VOTE.gif") top center / 100% 100% no-repeat;
+    overflow: hidden;
+  }
+
+  .lion {
+    position: absolute;
+    z-index: 5;
+    height: auto;
+    pointer-events: none;
+  }
+
+  .lion-left {
+    width: 15%;
+    left: 1.5%;
+    top: 18.2%;
+  }
+
+  .lion-right {
+    width: 14%;
+    right: 1.5%;
+    top: 20.5%;
+  }
+</style>
+</head>
+<body>
+  <main class="page" aria-label="Your vote matters">
+    <img class="lion lion-left" src="lion-left.gif" alt="">
+    <img class="lion lion-right" src="lion-right.gif" alt="">
+  </main>
+</body>
+</html>
